@@ -102,13 +102,13 @@ class MutasiBarangController extends Controller
     function delete_mutasi_barang($id)
     {
 
-            $mutasi = Mutasi::find($id);
-            $mutasi->forceDelete();
-            $delete_detail = DetailMutasi::where('detail_mutasi.id_mutasi', $id)->forceDelete();
-            return redirect('/list-mutasi-barang')
+            if($this->delete_data($id)==true) {
+                return redirect('/list-mutasi-barang')
             ->with([
                 'success' => 'Data Berhasil Dihapus'
             ]);
+            }
+            
     }
 
 }
